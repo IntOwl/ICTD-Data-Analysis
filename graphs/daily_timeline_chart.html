@@ -1,0 +1,80 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.3.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+      var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-915e59a0c15d68bf332a847adb97137c"}, "mark": "bar", "encoding": {"x": {"type": "nominal", "field": "days"}, "y": {"type": "quantitative", "field": "GB"}}, "$schema": "https://vega.github.io/schema/vega-lite/v3.3.0.json", "datasets": {"data-915e59a0c15d68bf332a847adb97137c": [{"days": "2019-03-04", "GB": 1.67899528}, {"days": "2019-03-05", "GB": 3.5420422}, {"days": "2019-03-06", "GB": 2.232488248}, {"days": "2019-03-07", "GB": 3.695596849}, {"days": "2019-03-08", "GB": 3.722139527}, {"days": "2019-03-09", "GB": 5.18912779}, {"days": "2019-03-10", "GB": 5.917744066}, {"days": "2019-03-11", "GB": 4.668283365}, {"days": "2019-03-12", "GB": 5.690482961}, {"days": "2019-03-13", "GB": 5.069127397}, {"days": "2019-03-14", "GB": 6.055141008}, {"days": "2019-03-15", "GB": 5.225654235}, {"days": "2019-03-16", "GB": 4.133862982}, {"days": "2019-03-17", "GB": 5.652406943}, {"days": "2019-03-18", "GB": 4.223814253}, {"days": "2019-03-19", "GB": 6.564563828}, {"days": "2019-03-20", "GB": 5.734440015}, {"days": "2019-03-21", "GB": 4.607569257}, {"days": "2019-03-22", "GB": 3.451900622}, {"days": "2019-03-23", "GB": 4.947428433}, {"days": "2019-03-24", "GB": 1.557887307}, {"days": "2019-03-25", "GB": 3.777497586}, {"days": "2019-03-26", "GB": 4.116784899}, {"days": "2019-03-27", "GB": 5.129052946}, {"days": "2019-03-28", "GB": 4.485921685}, {"days": "2019-03-29", "GB": 5.095969803}, {"days": "2019-03-30", "GB": 5.223412691}, {"days": "2019-03-31", "GB": 4.130009991}, {"days": "2019-04-01", "GB": 4.966431547}, {"days": "2019-04-02", "GB": 4.157457473}, {"days": "2019-04-03", "GB": 4.908045066}, {"days": "2019-04-04", "GB": 4.980638585}, {"days": "2019-04-05", "GB": 4.198455191}, {"days": "2019-04-06", "GB": 3.926222903}, {"days": "2019-04-07", "GB": 5.732994628}, {"days": "2019-04-08", "GB": 4.005000513}, {"days": "2019-04-09", "GB": 3.415784495}, {"days": "2019-04-10", "GB": 3.502612452}, {"days": "2019-04-11", "GB": 5.251116234}, {"days": "2019-04-12", "GB": 3.255305204}, {"days": "2019-04-13", "GB": 3.632159741}, {"days": "2019-04-14", "GB": 3.507642171}, {"days": "2019-04-15", "GB": 3.260176572}, {"days": "2019-04-16", "GB": 2.910916206}, {"days": "2019-04-17", "GB": 2.192155194}, {"days": "2019-04-18", "GB": 3.122274952}, {"days": "2019-04-19", "GB": 4.427654153}, {"days": "2019-04-20", "GB": 4.994296034}, {"days": "2019-04-21", "GB": 5.907032197}, {"days": "2019-04-22", "GB": 5.128153755}, {"days": "2019-04-23", "GB": 4.417868417}, {"days": "2019-04-24", "GB": 3.166185587}, {"days": "2019-04-25", "GB": 6.011417535}, {"days": "2019-04-26", "GB": 4.883030623}, {"days": "2019-04-27", "GB": 5.880530927}, {"days": "2019-04-28", "GB": 5.810941276}, {"days": "2019-04-29", "GB": 3.941861383}, {"days": "2019-04-30", "GB": 5.308201052}, {"days": "2019-05-01", "GB": 5.140996401}, {"days": "2019-05-02", "GB": 5.730934146}, {"days": "2019-05-03", "GB": 3.891604829}, {"days": "2019-05-04", "GB": 3.959804774}, {"days": "2019-05-05", "GB": 4.961069249}, {"days": "2019-05-06", "GB": 4.627370441}, {"days": "2019-05-07", "GB": 4.622180877}, {"days": "2019-05-08", "GB": 4.142452495}, {"days": "2019-05-09", "GB": 0.85604335}, {"days": "2019-05-10", "GB": 5.949897672}, {"days": "2019-05-11", "GB": 5.280280931}, {"days": "2019-05-12", "GB": 1.244933824}, {"days": "2019-05-13", "GB": 0.022423257}, {"days": "2019-05-14", "GB": 4.329864636}, {"days": "2019-05-15", "GB": 4.137148853}, {"days": "2019-05-16", "GB": 8.429128462}, {"days": "2019-05-17", "GB": 1.506030074}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+
+  </script>
+</body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.3.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+      var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-915e59a0c15d68bf332a847adb97137c"}, "mark": "bar", "encoding": {"x": {"type": "nominal", "field": "days"}, "y": {"type": "quantitative", "field": "GB"}}, "$schema": "https://vega.github.io/schema/vega-lite/v3.3.0.json", "datasets": {"data-915e59a0c15d68bf332a847adb97137c": [{"days": "2019-03-04", "GB": 1.67899528}, {"days": "2019-03-05", "GB": 3.5420422}, {"days": "2019-03-06", "GB": 2.232488248}, {"days": "2019-03-07", "GB": 3.695596849}, {"days": "2019-03-08", "GB": 3.722139527}, {"days": "2019-03-09", "GB": 5.18912779}, {"days": "2019-03-10", "GB": 5.917744066}, {"days": "2019-03-11", "GB": 4.668283365}, {"days": "2019-03-12", "GB": 5.690482961}, {"days": "2019-03-13", "GB": 5.069127397}, {"days": "2019-03-14", "GB": 6.055141008}, {"days": "2019-03-15", "GB": 5.225654235}, {"days": "2019-03-16", "GB": 4.133862982}, {"days": "2019-03-17", "GB": 5.652406943}, {"days": "2019-03-18", "GB": 4.223814253}, {"days": "2019-03-19", "GB": 6.564563828}, {"days": "2019-03-20", "GB": 5.734440015}, {"days": "2019-03-21", "GB": 4.607569257}, {"days": "2019-03-22", "GB": 3.451900622}, {"days": "2019-03-23", "GB": 4.947428433}, {"days": "2019-03-24", "GB": 1.557887307}, {"days": "2019-03-25", "GB": 3.777497586}, {"days": "2019-03-26", "GB": 4.116784899}, {"days": "2019-03-27", "GB": 5.129052946}, {"days": "2019-03-28", "GB": 4.485921685}, {"days": "2019-03-29", "GB": 5.095969803}, {"days": "2019-03-30", "GB": 5.223412691}, {"days": "2019-03-31", "GB": 4.130009991}, {"days": "2019-04-01", "GB": 4.966431547}, {"days": "2019-04-02", "GB": 4.157457473}, {"days": "2019-04-03", "GB": 4.908045066}, {"days": "2019-04-04", "GB": 4.980638585}, {"days": "2019-04-05", "GB": 4.198455191}, {"days": "2019-04-06", "GB": 3.926222903}, {"days": "2019-04-07", "GB": 5.732994628}, {"days": "2019-04-08", "GB": 4.005000513}, {"days": "2019-04-09", "GB": 3.415784495}, {"days": "2019-04-10", "GB": 3.502612452}, {"days": "2019-04-11", "GB": 5.251116234}, {"days": "2019-04-12", "GB": 3.255305204}, {"days": "2019-04-13", "GB": 3.632159741}, {"days": "2019-04-14", "GB": 3.507642171}, {"days": "2019-04-15", "GB": 3.260176572}, {"days": "2019-04-16", "GB": 2.910916206}, {"days": "2019-04-17", "GB": 2.192155194}, {"days": "2019-04-18", "GB": 3.122274952}, {"days": "2019-04-19", "GB": 4.427654153}, {"days": "2019-04-20", "GB": 4.994296034}, {"days": "2019-04-21", "GB": 5.907032197}, {"days": "2019-04-22", "GB": 5.128153755}, {"days": "2019-04-23", "GB": 4.417868417}, {"days": "2019-04-24", "GB": 3.166185587}, {"days": "2019-04-25", "GB": 6.011417535}, {"days": "2019-04-26", "GB": 4.883030623}, {"days": "2019-04-27", "GB": 5.880530927}, {"days": "2019-04-28", "GB": 5.810941276}, {"days": "2019-04-29", "GB": 3.941861383}, {"days": "2019-04-30", "GB": 5.308201052}, {"days": "2019-05-01", "GB": 5.140996401}, {"days": "2019-05-02", "GB": 5.730934146}, {"days": "2019-05-03", "GB": 3.891604829}, {"days": "2019-05-04", "GB": 3.959804774}, {"days": "2019-05-05", "GB": 4.961069249}, {"days": "2019-05-06", "GB": 4.627370441}, {"days": "2019-05-07", "GB": 4.622180877}, {"days": "2019-05-08", "GB": 4.142452495}, {"days": "2019-05-09", "GB": 0.85604335}, {"days": "2019-05-10", "GB": 5.949897672}, {"days": "2019-05-11", "GB": 5.280280931}, {"days": "2019-05-12", "GB": 1.244933824}, {"days": "2019-05-13", "GB": 0.022423257}, {"days": "2019-05-14", "GB": 4.329864636}, {"days": "2019-05-15", "GB": 4.137148853}, {"days": "2019-05-16", "GB": 8.429128462}, {"days": "2019-05-17", "GB": 1.506030074}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+
+  </script>
+</body>
+>>>>>>> e431055068f6ae03e89a85f93e1eec399a022c88
+</html>
