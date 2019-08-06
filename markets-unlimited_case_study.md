@@ -5,24 +5,24 @@ We found this interesting and decided to look into it more, since there was no w
 
 ## Timeline of accesses to and from markets-unlimited.com
 
-![](graphs/markets-unlimited/domain-accesses-timeline.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain-accesses-timeline.html"></object>
 
 ## Gantt Chart of the timeline of accesses to markets-unlimited.com
 
-![](graphs/markets-unlimited/domain_gantt_timeline_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_gantt_timeline_chart.html"></object>
 
 ## Traffic to each port from markets-unlimited.com
 
-![](graphs/markets-unlimited/domain_ports_traffic_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_ports_traffic_chart.html"></object>
 
 ## Traffic flows to and from markets-unlimited.com
 
-![](graph/markets-unlimited/domain_traffic_flows_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_traffic_flows_chart.html"></object>
 
 ## Timeline of traffic to and from markets-unlimited.com
 
-![](graph/markets-unlimited/domain_traffic_timeline_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_traffic_timeline_chart.html"></object>
 
 ## Total traffic per user to and from markets-unlimited.com
 
-![](graph/markets-unlimited/domain_users_traffic_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_users_traffic_chart.html"></object>
