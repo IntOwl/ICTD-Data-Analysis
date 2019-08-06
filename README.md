@@ -2,6 +2,10 @@
 
 Over the summer of 2019, I worked in the ICTD Lab at the University of Washington analyzing data coming back from a remote cellular network in Bokondini, Indonesia that our lab deployed. These are some of the results I found. I used Jupyter Notebook, Pandas, and Altair to create these graphs.
 
+### Case Studies:
+
+[markets-unlimited.com](markets-unlimited_case_study.md)
+
 ### HTTPS/HTTP Traffic (Percentages)
 
 ![](graphs/https_and_http.png)
