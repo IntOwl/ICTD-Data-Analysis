@@ -9,7 +9,7 @@ We found this interesting and decided to look into it more, since there was no w
 
 ## Gantt Chart of the timeline of accesses to markets-unlimited.com
 
-<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_gantt_timeline_chart.html"></object>
+<object width="100%" height="50" type="text/html" data="graphs/markets-unlimited/domain_gantt_timeline_chart.html"></object>
 
 ## Traffic to each port from markets-unlimited.com
 
