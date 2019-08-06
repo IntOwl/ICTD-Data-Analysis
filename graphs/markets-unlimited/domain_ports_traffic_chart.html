@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.3.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+      var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-61b77bf1a8d29241594f6194f0f5ab5f"}, "mark": "bar", "encoding": {"tooltip": [{"type": "ordinal", "field": "0"}, {"type": "ordinal", "field": "1"}, {"type": "quantitative", "field": "2"}], "x": {"type": "ordinal", "axis": {"title": "Port"}, "field": "1"}, "y": {"type": "quantitative", "axis": {"title": "Traffic"}, "field": "2"}}, "selection": {"selector008": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "width": 100, "$schema": "https://vega.github.io/schema/vega-lite/v3.3.0.json", "datasets": {"data-61b77bf1a8d29241594f6194f0f5ab5f": [{"0": "markets-unlimited", "1": 53, "2": 62399462}, {"0": "markets-unlimited", "1": 44445, "2": 33132}, {"0": "markets-unlimited", "1": 44447, "2": 3012}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+
+  </script>
+</body>
+</html>
