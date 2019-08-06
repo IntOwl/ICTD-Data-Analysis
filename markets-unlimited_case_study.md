@@ -1,4 +1,4 @@
-# Case Study: markets-unlimited.com
+# Case Study: markets-unlimited.com (8.8.8.8)
 
 In the data, I found that there were several accesses from a site called markets-unlimited.com, but not much traffic.
 We found this interesting and decided to look into it more, since there was no website at the address. We were suspicious that this site could be malware.
@@ -41,3 +41,7 @@ Similar to the accesses, most of the time the traffic is pretty consistent, at l
 
 This graph was originally made to see if the potential malware was affecting only a few of the users, rather than many of them. However,
 we saw that most, if not all, users had traffic running to and from this site, so this evidence would support an argument against whether or not markets-unlimited.com is malware.
+
+## Conclusion
+
+After looking back at my work, I realized my DNS log had somehow recorded 8.8.8.8 as the markets-unlimited.com address. I'm not sure how, but clearly I was wrong about this traffic being malware - it was actually Google's DNS server, which has the address 8.8.8.8, which explains all the DNS traffic and the same amount of traffic and accesses each hour, except when the network goes down, during which the DNS requests continuously repeat because there is no connection.
