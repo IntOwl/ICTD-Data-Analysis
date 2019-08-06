@@ -79,3 +79,16 @@ When it comes to accesses, I used the flow data to count how many times there wa
 ## Timeline of Android-related Sites
 
 <object width="100%" height="400" type="text/html" data="graphs/android_categorized_timeline_chart.html"></object>
+
+## Traffic per User as Distribution over All Users
+### Hourly
+
+<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_hourly_violin.html"></object>
+
+<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_hourly_boxplot.html"></object>
+
+### Daily
+
+<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_violin.html"></object>
+
+<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_boxplot.html"></object>
