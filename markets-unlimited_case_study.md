@@ -5,11 +5,11 @@ We found this interesting and decided to look into it more, since there was no w
 
 ## Timeline of accesses to and from markets-unlimited.com
 
-<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain-accesses-timeline.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/markets-unlimited/domain_accesses_timeline_chart.html"></object>
 
 ## Gantt Chart of the timeline of accesses to markets-unlimited.com
 
-<object width="100%" height="50" type="text/html" data="graphs/markets-unlimited/domain_gantt_timeline_chart.html"></object>
+<object width="100%" height="100" type="text/html" data="graphs/markets-unlimited/domain_gantt_timeline_chart.html"></object>
 
 ## Traffic to each port from markets-unlimited.com
 
