@@ -4,20 +4,20 @@
 
 ### Timeline of Traffic per User (Daily)
 
-![](graphs/users/user_distr_daily_timeline_chart.html)
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_daily_timeline_chart.html"></object>
 
 ### Violin Plot (Hourly)
 
-![](graphs/users/user_distr_traffic_hourly_violin.html)
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_violin.html"></object>
 
 ### Violin Plot (Daily)
 
-![](graphs/users/user_distr_traffic_daily_violin.html)
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_violin.html"></object>
 
 ### Boxplot (Hourly)
 
-![](graphs/users/user_distr_traffic_hourly_boxplot.html)
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_boxplot.html"></object>
 
 ### Boxplot (Daily)
 
-![](graphs/users/user_distr_traffic_daily_boxplot.html)
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_boxplot.html"></object>
