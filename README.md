@@ -93,6 +93,6 @@ When it comes to accesses, I used the flow data to count how many times there wa
 
 ### Daily
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_violin.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_violin.html"></object>
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_boxplot.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_boxplot.html"></object>
