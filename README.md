@@ -1,5 +1,9 @@
 ## Bokondini Data Analysis
 
+### User Data:
+
+[User Data Charts](users.md)
+
 ### Case Studies:
 
 [markets-unlimited.com](markets-unlimited_case_study.md)
