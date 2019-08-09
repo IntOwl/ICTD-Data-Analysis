@@ -1,5 +1,9 @@
 ## Bokondini Data Analysis
 
+### User Data:
+
+[User Data Charts](users.md)
+
 ### Case Studies:
 
 [markets-unlimited.com](markets-unlimited_case_study.md)
@@ -83,12 +87,12 @@ When it comes to accesses, I used the flow data to count how many times there wa
 ## Traffic per User as Distribution over All Users
 ### Hourly
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_hourly_violin.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_violin.html"></object>
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_hourly_boxplot.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_boxplot.html"></object>
 
 ### Daily
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_violin.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_violin.html"></object>
 
-<object width="100%" height="400" type="text/html" data="graphs/user_distr_traffic_daily_boxplot.html"></object>
+<object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_boxplot.html"></object>
