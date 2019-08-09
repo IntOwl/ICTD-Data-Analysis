@@ -8,6 +8,10 @@
 
 Select a user from the dropdown menu to see how much traffic they use per day.
 
+### Traffic from Users per Day as a Distribution over All Users:
+
+<object width="100%" height="400" type="text/html" data="graphs/users/daily_traffic_user_distr_violin.html"></object>
+
 ### Violin Plot (Hourly)
 
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_violin.html"></object>
