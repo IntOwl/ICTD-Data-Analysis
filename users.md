@@ -20,6 +20,12 @@ The amount of traffic used by each user per day, plotted over all users and all 
 
 The amount of traffic used by each user per day, plotted over all users and all days in the dataset. Each day has its own boxplot with each datapoint in the boxplot being a user that has used a specific amount of data. 
 
+### Ridgeline Plot
+
+<object width="100%" height="400" type="text/html" data="graphs/users/user_traffic_daily_distr_ridgeline.html"></object>
+
+Similar to the violin plot but slightly easier to visualize (and looking less like Christmas ornaments), this ridgeline plot takes the data of each user's total traffic per day and bins it, then graphs all the bins over each day. The bigger bumps in each day's plot represent more users with total daily traffic in that area.
+
 ## Traffic by Users as Distribution over All Users:
 
 ### Violin Plot (Hourly)
