@@ -130,4 +130,5 @@ dmypy.json
 *.pickle
 *.npy
 Flowlog Graphs.ipynb
-Case Studies.ipynb
+Case Study markets-unlimited.com (8.8.8.8).ipynb
+site_times_user_distr_ridgeline.html

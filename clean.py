@@ -5,6 +5,7 @@ import datetime
 import numpy as np
 import multiprocessing as mp
 import lzma
+import socket
 
 userlogs = dict()
 syslogs = dict()
@@ -138,9 +139,10 @@ def split_by_weeks(filename): # run once
             print(prev_date)
             if (date > prev_date + datetime.timedelta(days=6)):
                 for i in range(20):
-                    print("CHANGING")
+                    print(len(date_dicts))
                 with open("data/weeks/%s.pickle" % str(prev_date), mode="wb") as g:
                     for entry in date_dicts:
+                        print(entry['start_time'])
                         pickle.dump(entry, g, protocol=pickle.HIGHEST_PROTOCOL)
                 date_dicts = list()
                 prev_date = (current['start_time'] + datetime.timedelta(hours=9)).date()
@@ -150,80 +152,87 @@ def split_by_weeks(filename): # run once
                 date = (current['start_time'] + datetime.timedelta(hours=9)).date()
             except EOFError:
                 break
-        with open("data/weeks/%s.pickle" % str(date), mode="wb") as g:
+        with open("data/weeks/%s.pickle" % str(prev_date), mode="wb") as g:
             for entry in date_dicts:
                 pickle.dump(entry, g, protocol=pickle.HIGHEST_PROTOCOL)
             date_dicts = list()
 
 def extract_small(day):
+    totallog = list()
     flowlog = list()
     syslog = list()
-    with open("data/weeks/weeklog-%s.pickle" % day, mode="rb") as f:
-        flowlog.append(pickle.load(f))
-        old_index = 0
-        oldest = flowlog[0]
-        cont = True
-        temp = oldest
-        # print(temp)
-        while cont:
+    with open("data/weeks/%s.pickle" % day, mode="rb") as f:
+        while True:
+            try:
+                totallog.append(pickle.load(f))
+            except EOFError:
+                break
+        for temp in totallog:
             temp['start_time'] = temp['start_time'] + datetime.timedelta(hours=9)
             temp['end_time'] = temp['end_time'] + datetime.timedelta(hours=9)
-            try:
-                if temp['start_time'] == oldest['end_time']: # checking for following 5-tuple
-                    # not swapped
-                    if temp['port_a'] == oldest['port_a'] and temp['port_b'] == oldest['port_b'] and temp['transport_protocol'] == oldest['transport_protocol']: # checking for port matches:
-                        if ('obfuscated_a' in oldest.keys() 
-                            and 'obfuscated_a' in temp.keys() and oldest['obfuscated_a'] == temp['obfuscated_a']) or ('obfuscated_b' in oldest.keys() and 'obfuscated_b' in temp.keys() 
-                                                                                                                    and oldest['obfuscated_b'] == temp['obfuscated_b']):
-                            #combine
-                            oldest['bytes_b_to_a'] += temp['bytes_b_to_a']
-                            oldest['bytes_a_to_b'] += temp['bytes_a_to_b']
-                            old_index += 1
-                            oldest = flowlog[old_index]
-                    elif temp['port_a'] == oldest['port_b'] and temp['port_b'] == oldest['port_a']: # checking for port matches:
-                        if ('obfuscated_a' in oldest.keys() and 'obfuscated_b' in temp.keys() # swapped
-                        and oldest['obfuscated_a'] == temp['obfuscated_b']):
-                            #combine
-                            oldest['bytes_b_to_a'] += temp['bytes_a_to_b']
-                            oldest['bytes_a_to_b'] += temp['bytes_b_to_a']
-                            old_index += 1
-                            oldest = flowlog[old_index]
-                        elif ('obfuscated_b' in oldest.keys() and 'obfuscated_a' in temp.keys() # swapped the other way
-                        and oldest['obfuscated_b'] == temp['obfuscated_a']):
-                            # combine
-                            oldest['bytes_b_to_a'] += temp['bytes_a_to_b']
-                            oldest['bytes_a_to_b'] += temp['bytes_b_to_a']
-                            # change previous addresses/ports
-                            oldest['obfuscated_a'] = temp['obfuscated_a']
-                            oldest['address_b'] = temp['address_b']
-                            oldest['port_a'] = temp['port_b']
-                            oldest['port_b'] = temp['port_a']
-                            # get rid of old addresses
-                            oldest.pop('obfuscated_b')
-                            oldest.pop('address_a')
-                            old_index += 1
-                            oldest = flowlog[old_index]
-                elif temp['start_time'] > oldest['end_time']:
-                    while (temp['start_time'] > oldest['end_time']) and (old_index + 1 < len(flowlog)):
+            if 'obfuscated_a' in temp.keys() or 'obfuscated_b' in temp.keys():
+                flowlog.append(temp)
+            else:
+                syslog.append(temp)
+        old_index = 0
+        oldest = flowlog[old_index]
+        temp = flowlog[1]
+        # print(temp)
+        for i in range(1, len(flowlog)):
+            if temp['start_time'] == oldest['end_time'] or temp['start_time'] + datetime.timedelta(seconds=1) == oldest['end_time'] or temp['start_time'] == oldest['end_time'] + datetime.timedelta(seconds=1): # checking for following 5-tuple
+                # not swapped
+                if temp['port_a'] == oldest['port_a'] and temp['port_b'] == oldest['port_b'] and temp['transport_protocol'] == oldest['transport_protocol']: # checking for port matches:
+                    if ('obfuscated_a' in oldest.keys() 
+                        and 'obfuscated_a' in temp.keys() and oldest['obfuscated_a'] == temp['obfuscated_a']) or ('obfuscated_b' in oldest.keys() and 'obfuscated_b' in temp.keys() 
+                                                                                                                and oldest['obfuscated_b'] == temp['obfuscated_b']):
+                        #combine
+                        oldest['bytes_b_to_a'] += temp['bytes_b_to_a']
+                        oldest['bytes_a_to_b'] += temp['bytes_a_to_b']
+                        oldest['end_time'] = temp['end_time']
                         old_index += 1
                         oldest = flowlog[old_index]
-                if 'obfuscated_a' in temp.keys() or 'obfuscated_b' in temp.keys():
-                    flowlog.append(temp)
-                else:
-                    syslog.append(temp)
-                temp = pickle.load(f)
-            except EOFError:
-                cont = False
-    for entry in flowlog:
-        entry = remove_obfuscated(entry)
+                elif temp['port_a'] == oldest['port_b'] and temp['port_b'] == oldest['port_a']: # checking for port matches:
+                    print("same ports")
+                    if ('obfuscated_a' in oldest.keys() and 'obfuscated_b' in temp.keys() # swapped
+                    and oldest['obfuscated_a'] == temp['obfuscated_b']):
+                        #combine
+                        oldest['bytes_b_to_a'] += temp['bytes_a_to_b']
+                        oldest['bytes_a_to_b'] += temp['bytes_b_to_a']
+                        oldest['end_time'] = temp['end_time']
+                        old_index += 1
+                        oldest = flowlog[old_index]
+                    elif ('obfuscated_b' in oldest.keys() and 'obfuscated_a' in temp.keys() # swapped the other way
+                    and oldest['obfuscated_b'] == temp['obfuscated_a']):
+                        # combine
+                        oldest['bytes_b_to_a'] += temp['bytes_a_to_b']
+                        oldest['bytes_a_to_b'] += temp['bytes_b_to_a']
+                        # change previous addresses/ports
+                        oldest['obfuscated_a'] = temp['obfuscated_a']
+                        oldest['address_b'] = temp['address_b']
+                        oldest['port_a'] = temp['port_b']
+                        oldest['port_b'] = temp['port_a']
+                        # get rid of old addresses
+                        oldest.pop('obfuscated_b')
+                        oldest.pop('address_a')
+                        oldest['end_time'] = temp['end_time']
+                        old_index += 1
+                        oldest = flowlog[old_index]
+            elif temp['start_time'] > oldest['end_time']:
+                while (temp['start_time'] > oldest['end_time']) and (old_index + 1 < len(flowlog)):
+                    old_index += 1
+                    oldest = flowlog[old_index]
+            temp = flowlog[i]
+    print('end of week')
+    for i in range(len(flowlog)):
+        flowlog[i] = remove_obfuscated(flowlog[i])
     return flowlog, syslog
 
 def remove_obfuscated(temp):
     if 'obfuscated_a' in temp.keys():
-        if 'obfuscated_b' in temp.keys():
-            if temp['port_b'] == 137 or temp['port_a'] == 137:
-                print(temp)   
-        else:
+        if 'obfuscated_b' not in temp.keys():
+        #     if temp['port_b'] == 137 or temp['port_a'] == 137:
+        #         print(temp)   
+        # else:
             temp['public_addr'] = temp['address_b']
             temp.pop('address_b')
             temp['private_addr'] = temp['obfuscated_a']
@@ -254,74 +263,53 @@ def load_day(day):
     syslogs[day] = syslog
     return day, (flowlog, remote_userlog, local_userlog), syslog
 
+def update_dnslog(day):
+    with open("data/dnslog.pickle", mode="rb") as d:
+        dnslog = pickle.load(d)
+    with open("data/weeks/remote_userlogs/remote_userlog-%s.pickle" % day, mode="rb") as f:
+        remote_userlog = pickle.load(f)
+    not_in = list()
+    for entry in remote_userlog:
+        if 'public_addr' in entry and entry['public_addr'] not in dnslog and entry['public_addr'] not in not_in:
+            try:
+                dest = socket.gethostbyaddr(str(entry['public_addr']))[0]
+                dnslog[entry['public_addr']] = dest
+                print('success!')
+                print(entry['public_addr'])
+                print('done')
+            except socket.error:
+                not_in.append(entry['public_addr'])
+                print(entry['public_addr'])
+    with open("data/dnslog.pickle", mode="wb") as g:
+        pickle.dump(dnslog, g, protocol=pickle.HIGHEST_PROTOCOL)
+
 if __name__ == '__main__':
-    dates = list()
-    for i in range((datetime.date(2019, 5, 13) - datetime.date(2019, 3, 4)).days + 1):
-        if i % 7 == 0:
-            dates.append(datetime.date(2019, 3, 4) + datetime.timedelta(days=i))
-    # for date in dates:
+    # RESTART CODE TO RE-SPLIT DATA FROM ORIGINAL FILE ======
+    # split_by_weeks("data/2019-05-17-flowlog_archive-000.xz")
+    # =======================================================
+    # CLEAN AND STORE =======================================
+    # date = datetime.date(2019, 3, 4)
+    # while (date < datetime.date(2019, 5, 17)):
     #     print(date)
-    #     with open("data/weeks/remote_userlogs/remote_userlog-%s.pickle" % str(date), mode="rb") as d:
-    #         temp = pickle.load(d)
-    #     with lzma.open("data/weeks/remote_userlogs/%s.xz" % str(date), mode="wb") as f:
-    #         for entry in temp:
-    #             f.write(entry)
-    for date in dates:
-        remote_userlog = save_as_fast_flowlog(str(date), 'remote_userlog')
-        local_userlog = save_as_fast_flowlog(str(date), 'local_userlog')
-        netbios = save_as_fast_flowlog(str(date), 'netbios')
-        syslog = save_as_fast_syslog(str(date))
-        with open("data/numpy/remote_userlogs/%s.npy" % str(date), mode="wb") as g:
-            for entry in remote_userlog:
-                pickle.dump(entry, g, protocol = pickle.HIGHEST_PROTOCOL)
-        with open("data/numpy/local_userlogs/%s.npy" % str(date), mode="wb") as h:
-            for entry in local_userlog:
-                pickle.dump(entry, h, protocol = pickle.HIGHEST_PROTOCOL)
-        with open("data/numpy/netbios/%s.npy" % str(date), mode="wb") as i:
-            for entry in netbios:
-                pickle.dump(entry, i, protocol = pickle.HIGHEST_PROTOCOL)
-        with open("data/numpy/syslogs/%s.npy" % str(date), mode="wb") as j:
-            for entry in syslog:
-                pickle.dump(entry, j, protocol = pickle.HIGHEST_PROTOCOL)
-    # dates = list()
-    # for i in range((datetime.date(2019, 5, 17) - datetime.date(2019, 3, 4)).days + 1):
-    #     dates.append(datetime.date(2019, 3, 4) + datetime.timedelta(days=i))
-    # userlogs = dict()
-    # for date in dates:
     #     clean_and_store(date)
-    #     print(date)
-    # split_by_dates('data/2019-05-17-flowlog_archive-000.xz')
-
-    # dates = list()
-    # i = datetime.date(2019, 3, 4)
-    # week = list()
-    # while (i < datetime.date(2019, 5, 17)):
-    #     with open("data/weeks/weeklog-%s.pickle" % str(i), mode="rb") as f:
-    #         while True:
-    #             try:
-    #                 week.append(pickle.load(f))
-    #             except EOFError:
-    #                 break
-    #         print(week)
-    #         for entry in week:
-    #             entry['start_time'] += datetime.timedelta(hours=9)
-    #             entry['end_time'] += datetime.timedelta(hours=9)
-    #     with open("data/weeks/weeklog-%s.pickle" % str(i), mode="wb") as g:
-    #         for entry in week:
-    #             pickle.dump(week, g, protocol=pickle.HIGHEST_PROTOCOL)
-    #     week = list()
-    #     i += datetime.timedelta(days=7)
-    # for i in range((datetime.date(2019, 5, 17) - datetime.date(2019, 3, 4)).days + 1):
-    #     dates.append(str(datetime.date(2019, 3, 4) + datetime.timedelta(days=i)))
-    # week = list()
-    # for date in dates:
-    #     if len(week) == 7:
-    #         split_by_weeks(week)
-    #         week = list()
-    #     print(date)
-    #     week.append(date)
-
-    # dates = list()
-    # for i in range((datetime.date(2019, 3, 10) - datetime.date(2019, 3, 4)).days + 1):
-    #     dates.append(str(datetime.date(2019, 3, 4) + datetime.timedelta(days=i)))
-    # split_by_weeks(dates)
+    #     date += datetime.timedelta(days=7)
+    # =======================================================
+    # TEST CODE TO LOOK AT ONE FILE =========================
+    # with open("data/weeks/2019-03-11.pickle", mode="rb") as f:
+    #     while True:
+    #         print(pickle.load(f))
+    # =======================================================
+    # TEST CODE FOR REMOTE USERLOGS =========================
+    # with open("data/weeks/remote_userlogs/remote_userlog-2019-03-04.pickle", mode="rb") as f:
+    #     remote_userlog = pickle.load(f)
+    #     for entry in remote_userlog:
+    #         if entry['end_time'] - entry['start_time'] > datetime.timedelta(minutes=21):
+    #             print(entry)
+    # =======================================================
+    # ADDING ENTRIES TO DNSLOG
+    date = datetime.date(2019, 3, 4)
+    while (date < datetime.date(2019, 5, 17)):
+        print(date)
+        update_dnslog(date)
+        date += datetime.timedelta(days=7)
+    # =======================================================
