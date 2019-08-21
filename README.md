@@ -96,3 +96,7 @@ When it comes to accesses, I used the flow data to count how many times there wa
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_violin.html"></object>
 
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_boxplot.html"></object>
+
+## Flow Lengths per Site Category
+
+<object width="100%" height="400" type="text/html" data="graphs/users/category_count_distr_ridgeline.html"></object>
