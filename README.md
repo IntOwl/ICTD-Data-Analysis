@@ -100,3 +100,5 @@ When it comes to accesses, I used the flow data to count how many times there wa
 ## Flow Lengths per Site Category
 
 <object width="100%" height="400" type="text/html" data="graphs/users/category_count_distr_ridgeline.html"></object>
+
+Due to efficiency concerns, in the original data each flow was sectioned off into 20 minute chunks. Once cleaned, any two flows with the same 5-tuples and one with the same ending time as the other's starting time were combined. As it turns out, there were not very many of these flows that lasted longer than 40 minutes total. Although they are still clumped into chunks and we do not know how long exactly each visit to each site by each user was, we have a rough estimate that most were between 0 and 20 minutes, and a few were between 20 and 40 minutes, but none were above 40 minutes.
