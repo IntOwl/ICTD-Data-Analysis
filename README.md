@@ -68,6 +68,8 @@ When it comes to accesses, I used the flow data to count how many times there wa
 
 ![](graphs/port_accesses_interactive.svg)
 
+Most traffic was HTTPS, but there was some QUIC traffic and some HTTP traffic. Since many devices on the network are Android phones, the prevalence of QUIC traffic makes sense, since Android phones use a client-side implementation of QUIC, and some Google services that support QUIC also use it, when accessed.
+
 ## Time on each Site
 
 ![](graphs/site_times.png)
