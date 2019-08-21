@@ -1,11 +1,27 @@
 import pickle
+import lzma
 
-def clean_dnslog(filename):
-    with open(filename, mode="rb") as f:
-        dnslog = pickle.load(f)
+def get_dnslog(filename):
+
+    dnslog = dict()
+    i = 0
+
+    # getting the original dictionary with addresses as keys and domain names as values
+    with lzma.open(filename) as f:
+        while True:
+            try:
+                temp = pickle.load(f)
+            except EOFError:
+                break
+            for addr in temp['response_addresses']:
+                if addr not in dnslog.keys():
+                    dnslog[addr] = temp['host']
+            i += 1
+    
     new_dnslog = dict()
-    # sorting through the dnslog dict to create a new dict (new_dnslog) with each key being the site name 
-    # and each value being a list of all the urls for that site
+
+    # from the original dictionary, sorting into some of the biggest sites and creating
+    # a list of all related domain names
     for entry in dnslog:
         if 'google' in dnslog[entry] or 'gmail' in dnslog[entry]:
             if 'google' not in new_dnslog:
@@ -67,4 +83,4 @@ def clean_dnslog(filename):
         pickle.dump(new_dnslog, g, protocol=pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
-    clean_dnslog('data/dnslog.pickle')
+    get_dnslog('data/2019-05-17-dnslog_archive-000.xz')
