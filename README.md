@@ -78,6 +78,13 @@ Most traffic was HTTPS, but there was some QUIC traffic and some HTTP traffic. S
 
 <object width="100%" height="400" type="text/html" data="graphs/top_sites_chart.html"></object>
 
+Traffic from each of the top sites (AMPProject, Facebook, Google, Instagram, Whatsapp, and XNXX's CDN) in a timeline, condensed to traffic per hour.
+Since AMPProject is a CDN-like service to help webpages load faster on mobile, much of the traffic is actually coming from other websites. However, we are not able to distinguish which websites exactly these come from, since all the traffic still goes through AMP, so it is all categorized under AMPProject. But something to keep in mind when looking at this data is that AMP itself is not a website, but a CDN-like service, so we have actually shown how much traffic is going through AMP every hour.
+Much of the Facebook and Google traffic is difficult to differentiate between the different Facebook and Google services, which is why they're grouped together. We do not know how much is ads, chatting, storage, posting, etc. We only know the origin of the traffic. Additionally, since many of the phones on the network are Android phones, and a lot of Android traffic also goes back to Google, it makes sense that there would be lots of Google traffic.
+We can safely assume from this data that Whatsapp is the main means of communication between the members of the Bokondini community, which is why there's a lot of traffic to and from it. We might also be able to assume that the community is utilizing the calling function of Whatsapp as well as sharing photos and videos, because for it to be on the same level as Instagram, Google and Facebook, there must be more than just textual traffic.
+Since Instagram has many photos and videos, it makes sense that a lot of traffic would be coming from and going to Instagram.
+Perhaps the most unexpected was a lot of traffic from XNXX's CDN. I wasn't too surprised to find traffic from adult videos, but I certainly didn't expect a single adult videos site to be in the top sites category. Additionally, although there isn't always someone active on the website, some of the spikes of activity turn out to be quite a lot more than the other activity in that hour. Specifically, from 8-9 PM on April 23rd, there was about 370 MB of traffic from XNXX.com, which is 10 times more traffic than Whatsapp, the service with the second most amount of traffic, during that hour. 
+
 ## Timeline of Top Categories of Sites
 
 <object width="100%" height="400" type="text/html" data="graphs/categorized_timeline_chart.html"></object>
@@ -85,6 +92,9 @@ Most traffic was HTTPS, but there was some QUIC traffic and some HTTP traffic. S
 ## Timeline of Android-related Sites
 
 <object width="100%" height="400" type="text/html" data="graphs/android_categorized_timeline_chart.html"></object>
+
+There are many different Android phones from various Asian companies being used in the communities, and we can see this reflected in the various sites being accessed from these phones. We see companies such as ColorOS, Meizu, Samsung, Vivo, and Xiaomi, all of which are Asian Android phone companies that we can assume the users own phones from. Additionally, since some of these companies have their own app stores (notably, Vivo's app store is a popular one in Asia) and a few other non-Google app stores (such as 9apps) are accessed, we can assume that those app stores are being used a fair amount, especially with the spikes we see from 9apps and Vivo in the timeline.
+I also included AMPProject under Android-related sites, but they are mostly a mobile-related site, rather than purely Android.
 
 ## Traffic per User as Distribution over All Users
 ### Hourly
