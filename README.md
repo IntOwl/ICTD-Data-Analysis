@@ -94,6 +94,8 @@ Perhaps the most unexpected was a lot of traffic from XNXX's CDN. I wasn't too s
 
 <object width="100%" height="400" type="text/html" data="graphs/categorized_timeline_chart.html"></object>
 
+For the most part, much of the traffic throughout the day consist of ads, Facebook, and Google traffic. We can infer that many of the websites visited have ads on them, and Facebook and Google services are probably being used pretty consistently. Additionally, since many of the users in the community have Android phones, Google may be communicating with their phones even when they're not explicitly using a Google service. Many of these phones probably also have Facebook installed on them, and have active Facebook users, which is where much of the Facebook traffic comes from. Facebook may also be doing a similar thing to Google - communicating with the user's device even when the user isn't using the Facebook app. 
+
 ## Timeline of Android-related Sites
 
 <object width="100%" height="400" type="text/html" data="graphs/android_categorized_timeline_chart.html"></object>
