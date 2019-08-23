@@ -113,17 +113,36 @@ There are many different Android phones from various Asian companies being used 
 I also included AMPProject under Android-related sites, but they are mostly a mobile-related site, rather than purely Android.
 
 ## Traffic per User as Distribution over All Users
+
+### Split over Users, Per Day
+
+<object width="100%" height="400" type="text/html" data="graphs/users/daily_traffic_user_distr_violin.html"></object>
+
+Traffic per user every day in a violin plot per day. The areas where the plots are thicker means there are more users that have had a total amount of traffic that day in that area, or 'bin'.
+
+<object width="100%" height="400" type="text/html" data="graphs/users/daily_traffic_user_distr_boxplot.html"></object>
+
+Traffic per user every day in a box plot per day. Outliers have not been excluded from or specified in the dataset.
+
 ### Hourly
 
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_violin.html"></object>
 
+Traffic per hour for every user in a violin plot per user. The areas where the plots are thicker means there are more hours where the total traffic of that user falls within that binned amount of traffic.
+
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_hourly_boxplot.html"></object>
+
+Traffic per hour for every user with a box plot per user. Outliers have not been excluded from or specified in the dataset.
 
 ### Daily
 
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_violin.html"></object>
 
+Traffic per day for every user in a violin plot per user. The areas where the plots are thicker means there are more days where the total traffic of that user falls within that binned amount of traffic.
+
 <object width="100%" height="400" type="text/html" data="graphs/users/user_distr_traffic_daily_boxplot.html"></object>
+
+Traffic per day for every user with a box plot per user. Outliers have not been excluded from or specified in the dataset.
 
 ## Flow Lengths per Site Category
 
