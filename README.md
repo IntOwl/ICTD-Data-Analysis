@@ -36,6 +36,8 @@ The average pattern seems to be less usage in the morning, when the network turn
 
 ![](graphs/user_average_hourly.png)
 
+The average day's traffic, but divided by the number of users in the community.
+
 ### User to Local, User to User, and User to Remote Traffic (Percentages)
 
 ![](graphs/local_netbios_remote.png)
@@ -56,7 +58,9 @@ Facebook and Google services were accessed a lot in Bokondini, followed by vario
 
 ### Traffic to/from Each Site (Percentages, Categorized)
 
-![](graphs/site_categorized.png)
+![](graphs/sites_traffic_percentages.png)
+
+Re-graphed above traffic data to make sense to the viewer as percentages.
 
 ### Accesses to Each Site
 
@@ -73,6 +77,8 @@ Most traffic was HTTPS, but there was some QUIC traffic and some HTTP traffic. S
 ## Time on each Site
 
 ![](graphs/site_times.png)
+
+We can infer that either lots of Google and Facebook services are being used (which makes more sense for Google because of Android phones than Facebook), or that Google and Facebook, in taking their data of the users, end up having lots of site accesses and thus longer flow times on their sites.
 
 ## Timeline of Top Sites
 
@@ -95,6 +101,8 @@ Perhaps the most unexpected was a lot of traffic from XNXX's CDN. I wasn't too s
 <object width="100%" height="400" type="text/html" data="graphs/categorized_timeline_chart.html"></object>
 
 For the most part, much of the traffic throughout the day consist of ads, Facebook, and Google traffic. We can infer that many of the websites visited have ads on them, and Facebook and Google services are probably being used pretty consistently. Additionally, since many of the users in the community have Android phones, Google may be communicating with their phones even when they're not explicitly using a Google service. Many of these phones probably also have Facebook installed on them, and have active Facebook users, which is where much of the Facebook traffic comes from. Facebook may also be doing a similar thing to Google - communicating with the user's device even when the user isn't using the Facebook app. 
+
+However, I was surprised at the steady accessing of news, CDNs, and other, less used site categories throughout the time period. It shows that the users have been making the most of their access to the Internet, especially if they are checking their devices at least once an hour.
 
 ## Timeline of Android-related Sites
 
